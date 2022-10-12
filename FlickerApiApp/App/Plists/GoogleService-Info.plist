@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>623299658707-n0t5m4uppc8ngvhdv245d8smr2h3ltqi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.623299658707-n0t5m4uppc8ngvhdv245d8smr2h3ltqi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDFuPFpgz1vb8r5dyR_Y4YmyJRosh9UOdM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>623299658707</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.berksu.portfolio.FlickerApiApp</string>
+	<key>PROJECT_ID</key>
+	<string>flickerapiapp-fd6a4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flickerapiapp-fd6a4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:623299658707:ios:634f0f3885cca96f706526</string>
+</dict>
+</plist>
