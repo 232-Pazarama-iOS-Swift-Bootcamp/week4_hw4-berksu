@@ -24,28 +24,27 @@ class AuthenticationViewController: UIViewController {
             print("email or password is empty")
             return
         }
-        if email.isValidEmail && password.isValidPassword{
-            auth.signIn(withEmail: email,
-                        password: password){ [weak self] result, error in
-                
-                if let error = error as? NSError{
-                    print("Error: \(error.localizedDescription)")
-                }else{
-                    print("Sign In")
-                }
-                
-                guard result != nil, error == nil else{
-                    let mainViewController = MainViewController()
-                    self?.navigationController?.pushViewController(mainViewController, animated: true)
-                    return
-                }
-                
-                
-                // Success
-                DispatchQueue.main.async {
-                    self?.signedIn = true
-                }
+
+        auth.signIn(withEmail: email,
+                    password: password){ [weak self] result, error in
+            
+            if let error = error as? NSError{
+                print("Error: \(error.localizedDescription)")
+                return
+            }else{
+                print("Sign In")
             }
+            
+            guard result != nil, error == nil else{ return }
+            
+            
+            // Success
+            DispatchQueue.main.async {
+                self?.signedIn = true
+            }
+
+            let mainViewController = MainViewController()
+            self?.navigationController?.pushViewController(mainViewController, animated: true)
         }
     }
     
@@ -60,20 +59,20 @@ class AuthenticationViewController: UIViewController {
                 
                 if let error = error as? NSError{
                     print("Error: \(error.localizedDescription)")
+                    return
                 }else{
                     print("Sign Up")
                 }
                 
-                guard result != nil, error == nil else{
-                    let mainViewController = MainViewController()
-                    self?.navigationController?.pushViewController(mainViewController, animated: true)
-                    return
-                }
+                guard result != nil, error == nil else{ return }
                 
                 // Success
                 DispatchQueue.main.async {
                     self?.signedIn = true
                 }
+                
+                let tabBarViewController = TabBarViewController()
+                self?.navigationController?.pushViewController(tabBarViewController, animated: true)
             }
         }else{
             print("\(password.getMissingValidation())")
@@ -83,12 +82,13 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //try! Auth.auth().signOut()
         view.backgroundColor = .red
         if !isSignedIn{
             view = authenticationView
         }else{
-            let mainViewController = MainViewController()
-            self.navigationController?.pushViewController(mainViewController, animated: true)
+            let tabBarViewController = TabBarViewController()
+            self.navigationController?.pushViewController(tabBarViewController, animated: true)
         }
         authenticationView.signInSignUpButton.addTarget(self, action: #selector(signInSignUpButtonAction), for: .touchUpInside)
     }
@@ -103,4 +103,24 @@ class AuthenticationViewController: UIViewController {
     }
     
 }
+
+
+// Forget password
+//Auth.auth().sendPasswordReset(withEmail: email) { error in
+//  // [START_EXCLUDE]
+//  strongSelf.hideSpinner {
+//    if let error = error {
+//      strongSelf.showMessagePrompt(error.localizedDescription)
+//      return
+//    }
+//    strongSelf.showMessagePrompt("Sent")
+//  }
+//  // [END_EXCLUDE]
+//}
+
+
+// Set user password
+//Auth.auth().currentUser?.updatePassword(to: password) { error in
+//  // ...
+//}
 

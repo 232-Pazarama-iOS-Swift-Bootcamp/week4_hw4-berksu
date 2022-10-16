@@ -8,13 +8,30 @@
 import UIKit
 
 class MainView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(MainViewCustomCell.self, forCellReuseIdentifier: MainViewCustomCell.identifier)
+        return tableView
+    }()
+    
+    // MARK: - Init
+    init() {
+        super.init(frame: .zero)
+        backgroundColor = .red
+        addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+        }
     }
-    */
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
 }

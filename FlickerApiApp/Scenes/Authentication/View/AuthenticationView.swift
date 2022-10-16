@@ -11,9 +11,15 @@ final class AuthenticationView: UIView{
 
     var password: String? {
         get{
-            if let password = passwordTextField.text, let reTypedPassword = passwordRetypeTextField.text{
-                if password == reTypedPassword{
+            if(segmentedControl.selectedSegmentIndex == 0){
+                if let password = passwordTextField.text{
                     return password
+                }
+            }else{
+                if let password = passwordTextField.text, let reTypedPassword = passwordRetypeTextField.text{
+                    if password == reTypedPassword{
+                        return password
+                    }
                 }
             }
             return nil
@@ -130,7 +136,7 @@ final class AuthenticationView: UIView{
         textfield.leftView = spacerView
         textfield.placeholder = "Username"
         textfield.autocapitalizationType = .none
-        //textfield.autocorrectionType = .no
+        textfield.autocorrectionType = .no
         textfield.tintColor = .black
         textfield.layer.masksToBounds = true
         textfield.layer.cornerRadius = 8.0
