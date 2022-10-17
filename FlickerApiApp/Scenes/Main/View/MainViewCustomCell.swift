@@ -17,6 +17,41 @@ final class MainViewCustomCell: UITableViewCell{
             titleLabel.text = title
         }
     }
+
+    private var isFavouriteTouched = false
+    var isFavuriteButtonTouched: Bool{
+        get{
+            return isFavouriteTouched
+        }
+        set{
+            if newValue {
+                addFavouriteButton.setImage(UIImage(named: "favourite_plus"), for: .normal)
+                addFavouriteButton.tintColor = .red
+            }else {
+                addFavouriteButton.setImage(UIImage(named: "favourite"), for: .normal)
+                addFavouriteButton.tintColor = .black
+            }
+            isFavouriteTouched = newValue
+        }
+    }
+    
+    private var isSaveTouched = false
+    var isSaveButtonTouched: Bool{
+        get{
+            return isSaveTouched
+        }
+        set{
+            if newValue {
+                saveButton.setImage(UIImage(named: "saved"), for: .normal)
+                saveButton.tintColor = .green
+            }else {
+                saveButton.setImage(UIImage(named: "save"), for: .normal)
+                saveButton.tintColor = .black
+            }
+            isSaveTouched = newValue
+        }
+    }
+    
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -44,15 +79,15 @@ final class MainViewCustomCell: UITableViewCell{
     }()
     
     // TODO: - User intents will be added
-    private lazy var addFavouriteButton: UIButton = {
-        let button = UIButton()
+    lazy var addFavouriteButton: SubclassedUIButton = {
+        let button = SubclassedUIButton()
         button.setImage(UIImage(named: "favourite"), for: .normal)
         button.tintColor = .black
         return button
     }()
     
-    private lazy var saveButton: UIButton = {
-        let button = UIButton()
+    lazy var saveButton: SubclassedUIButton = {
+        let button = SubclassedUIButton()
         button.setImage(UIImage(named: "save"), for: .normal)
         button.tintColor = .black
         return button

@@ -8,9 +8,13 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    var profileView = ProfileView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //view.backgroundColor = .blue
+        view = profileView
+        profileView.name = "Berksu"
     }
 }

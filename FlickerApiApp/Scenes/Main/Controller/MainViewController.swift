@@ -13,6 +13,9 @@ class MainViewController: UIViewController {
     let mainViewModel = MainViewViewModel()
     let mainView = MainView()
     
+    var isFavouriteButtonTouched = false
+    var isSaveButtonTouched = false
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         mainViewModel.fetchRecentPhotos()
@@ -39,8 +42,7 @@ class MainViewController: UIViewController {
     
 }
 
-
-// MARK: -TableView Delegate
+// MARK: - TableView Delegate
 extension MainViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Index: \(indexPath.row)")
@@ -48,7 +50,7 @@ extension MainViewController: UITableViewDelegate{
 }
 
 
-// MARK: -TableView DataSource
+// MARK: - TableView DataSource
 extension MainViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mainViewModel.numberOfRows
@@ -60,12 +62,12 @@ extension MainViewController: UITableViewDataSource{
             return UITableViewCell()
         }
         
-        let photoAtIndex = mainViewModel.photoForIndexPath(indexPath)
+        guard let photoAtIndex = mainViewModel.photoForIndexPath(indexPath) else {fatalError("Photo is nil")}
         
-        let url = photoAtIndex?.url_n ?? ""
-        if let farm = photoAtIndex?.farm,
-           let server = photoAtIndex?.server,
-           let owner = photoAtIndex?.owner
+        let url = photoAtIndex.url_n ?? ""
+        if let farm = photoAtIndex.farm,
+           let server = photoAtIndex.server,
+           let owner = photoAtIndex.owner
         {
             let profileImageURL = "https://farm\(farm).staticflickr.com/\(server)/buddyicons/\(owner).jpg"
             KingfisherOperations.shared.downloadProfileImage(url: profileImageURL, imageView: cell.profileImageView){success in
@@ -84,11 +86,46 @@ extension MainViewController: UITableViewDataSource{
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         }
-        cell.title = photoAtIndex?.ownername
-
+        cell.title = photoAtIndex.ownername
+        cell.addFavouriteButton.photo = photoAtIndex
+        cell.addFavouriteButton.cell = cell
+        cell.addFavouriteButton.addTarget(self, action: #selector(addToFavourite), for: .touchUpInside)
+        
+        cell.saveButton.photo = photoAtIndex
+        cell.saveButton.cell = cell
+        cell.saveButton.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
         return cell
     }
+}
+
+
+// MARK: User Intents
+extension MainViewController{
+    @objc func addToFavourite(sender:SubclassedUIButton){
+        guard let isTouched = sender.cell?.isFavuriteButtonTouched else{return}
+        if !isTouched{
+            mainViewModel.addPhotoToFirebaseFirestoreAsFavourite(sender.photo)
+            sender.cell?.isFavuriteButtonTouched = true
+        }else{
+            mainViewModel.removePhotoToFirebaseFirestoreFromFavorite(sender.photo)
+            sender.cell?.isFavuriteButtonTouched = false
+        }
+    }
     
-    
-    
+    @objc func saveButton(sender:SubclassedUIButton){
+        guard let isTouched = sender.cell?.isSaveButtonTouched else{return}
+        if !isTouched{
+            mainViewModel.addPhotoToFirebaseFirestoreAsSaved(sender.photo)
+            sender.cell?.isSaveButtonTouched = true
+        }else{
+            mainViewModel.removePhotoToFirebaseFirestoreFromSaved(sender.photo)
+            sender.cell?.isSaveButtonTouched = false
+        }
+    }
+}
+
+
+class SubclassedUIButton: UIButton {
+    var photo: Photo?
+    var cell: MainViewCustomCell?
 }

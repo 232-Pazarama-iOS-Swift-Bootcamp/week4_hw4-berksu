@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+        setupFirebase()
         return true
+    }
+    
+    // Firebase configuration
+    private func setupFirebase() {
+        FirebaseApp.configure()
+        
+        _ = Firestore.firestore()
     }
 
     // MARK: UISceneSession Lifecycle

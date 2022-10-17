@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90335E928FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90335E828FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift */; };
+		C90335EE28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90335ED28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift */; };
+		C90335F028FDF10F00D8C7D2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90335EF28FDF10F00D8C7D2 /* ProfileView.swift */; };
+		C90335F228FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90335F128FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift */; };
 		C916F41E28F8831B000E5B73 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C916F41D28F8831B000E5B73 /* String+Extensions.swift */; };
 		C916F42528F89F15000E5B73 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C916F42428F89F15000E5B73 /* MainViewController.swift */; };
 		C916F42728F89F43000E5B73 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C916F42628F89F43000E5B73 /* MainView.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C90335E828FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreAccessible.swift; sourceTree = "<group>"; };
+		C90335ED28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthAccessible.swift; sourceTree = "<group>"; };
+		C90335EF28FDF10F00D8C7D2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C90335F128FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreManagement.swift; sourceTree = "<group>"; };
 		C916F41D28F8831B000E5B73 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C916F42428F89F15000E5B73 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C916F42628F89F43000E5B73 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -95,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				C916F41D28F8831B000E5B73 /* String+Extensions.swift */,
+				C90335E828FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift */,
+				C90335ED28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -166,6 +176,7 @@
 			children = (
 				C93234A428FBF01E004443B4 /* FlickrApi.swift */,
 				C93234CC28FC6FEB004443B4 /* KingfisherOperations.swift */,
+				C90335F128FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -175,7 +186,6 @@
 			children = (
 				C93234B228FC0809004443B4 /* ModelView */,
 				C93234B128FC07F9004443B4 /* View */,
-				C93234B028FC07F4004443B4 /* Model */,
 				C93234AF28FC07EA004443B4 /* Controller */,
 			);
 			path = Search;
@@ -206,13 +216,6 @@
 				C93234B728FC083E004443B4 /* SearchViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		C93234B028FC07F4004443B4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C93234B128FC07F9004443B4 /* View */ = {
@@ -249,6 +252,7 @@
 		C93234B528FC0822004443B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C90335EF28FDF10F00D8C7D2 /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -479,6 +483,9 @@
 				C93234CF28FCAA23004443B4 /* SearchView.swift in Sources */,
 				C93234B828FC083E004443B4 /* SearchViewController.swift in Sources */,
 				C916F41E28F8831B000E5B73 /* String+Extensions.swift in Sources */,
+				C90335E928FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift in Sources */,
+				C90335EE28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift in Sources */,
+				C90335F228FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift in Sources */,
 				C916F42728F89F43000E5B73 /* MainView.swift in Sources */,
 				C93234BC28FC08F5004443B4 /* RecentPhotosResponse.swift in Sources */,
 				C93D65F428F753C900F32BE6 /* AuthenticationViewController.swift in Sources */,
@@ -487,6 +494,7 @@
 				C93234C028FC09DF004443B4 /* Photos.swift in Sources */,
 				C93234C328FC387F004443B4 /* Encodable+Extensions.swift in Sources */,
 				C93234BE28FC0984004443B4 /* Photo.swift in Sources */,
+				C90335F028FDF10F00D8C7D2 /* ProfileView.swift in Sources */,
 				C93234CD28FC6FEB004443B4 /* KingfisherOperations.swift in Sources */,
 				C93234CB28FC5491004443B4 /* CGFloat+Extensions.swift in Sources */,
 				C93234AA28FBFAE8004443B4 /* TabBarViewController.swift in Sources */,
