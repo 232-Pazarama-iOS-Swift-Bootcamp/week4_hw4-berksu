@@ -76,11 +76,9 @@ extension SearchViewController: UISearchResultsUpdating{
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
         if let text = searchController.searchBar.text, text.count > 1 {
-            //fetchMedia(with: text)
-            print("text: \(text)")
+            searchViewModel.fetchSearchedPhotos(text: text)
         }else{
-            //fetchMedia(with: "\(Media.self)".lowercased())
-            print("empty text")
+            searchViewModel.fetchRecentPhotos()
         }
     }
 }

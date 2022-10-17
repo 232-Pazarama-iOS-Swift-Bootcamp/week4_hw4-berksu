@@ -60,7 +60,6 @@ extension MainViewController: UITableViewDataSource{
             return UITableViewCell()
         }
         
-        print("\(indexPath.row)")
         let photoAtIndex = mainViewModel.photoForIndexPath(indexPath)
         
         let url = photoAtIndex?.url_n ?? ""

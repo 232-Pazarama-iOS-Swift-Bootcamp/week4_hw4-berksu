@@ -31,7 +31,7 @@ struct KingfisherOperations{
             switch result {
             case .success(let value):
                 completion(true)
-                print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                //print("Task done for: \(value.source.url?.absoluteString ?? "")")
             case .failure(let error):
                 completion(false)
                 print("Job failed: \(error.localizedDescription)")
@@ -56,7 +56,7 @@ struct KingfisherOperations{
             result in
             switch result {
             case .success(let value):
-                print("Task done for: \(value.source.url?.absoluteString ?? "")")
+               // print("Task done for: \(value.source.url?.absoluteString ?? "")")
                 completion(true)
             case .failure(let error):
                 print("Job failed: \(error.localizedDescription)")
@@ -64,7 +64,5 @@ struct KingfisherOperations{
             }
         }
     }
-    
-    // TODO: - Search will be added
-    
+        
 }
