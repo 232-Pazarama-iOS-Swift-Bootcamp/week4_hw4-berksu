@@ -56,11 +56,3 @@ extension FlickrApi: TargetType{
     }
 }
 
-// MARK: - Helpers
-private extension String {
-    var urlEscaped: String {
-        addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-    }
-
-    var utf8Encoded: Data { Data(self.utf8) }
-}
