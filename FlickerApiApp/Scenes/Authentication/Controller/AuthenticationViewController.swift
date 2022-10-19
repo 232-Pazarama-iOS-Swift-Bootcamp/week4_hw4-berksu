@@ -11,94 +11,50 @@ import FirebaseAuth
 class AuthenticationViewController: UIViewController {
 
     let authenticationView = AuthenticationView()
-    let auth = Auth.auth()
+    let authenticationViewModel = AuthenticationViewModel()
+    
     var signedIn = false
-    
-    
     var isSignedIn: Bool {
-        return auth.currentUser != nil
-    }
-    
-    func signIn(email: String?, password: String?){
-        guard let email = email, let password = password else{
-            print("email or password is empty")
-            return
-        }
-
-        auth.signIn(withEmail: email,
-                    password: password){ [weak self] result, error in
-            
-            if let error = error as? NSError{
-                print("Error: \(error.localizedDescription)")
-                return
-            }else{
-                print("Sign In")
-            }
-            
-            guard result != nil, error == nil else{ return }
-            
-            
-            // Success
-            DispatchQueue.main.async {
-                self?.signedIn = true
-            }
-
-            let mainViewController = MainViewController()
-            self?.navigationController?.pushViewController(mainViewController, animated: true)
-        }
-    }
-    
-    func signUp(email: String?, password: String?){
-        guard let email = email, let password = password else{
-            print("email or password is empty")
-            return
-        }
-        if email.isValidEmail && password.isValidPassword{
-            auth.createUser(withEmail: email,
-                            password: password){ [weak self] result, error in
-                
-                if let error = error as? NSError{
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }else{
-                    print("Sign Up")
-                }
-                
-                guard result != nil, error == nil else{ return }
-                
-                // Success
-                DispatchQueue.main.async {
-                    self?.signedIn = true
-                }
-                
-                let tabBarViewController = TabBarViewController()
-                self?.navigationController?.pushViewController(tabBarViewController, animated: true)
-            }
-        }else{
-            print("\(password.getMissingValidation())")
-        }
+        return authenticationViewModel.isSignedIn
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //try! Auth.auth().signOut()
+        try! Auth.auth().signOut()
         view.backgroundColor = .red
+        signedIn = authenticationViewModel.signedIn
         if !isSignedIn{
             view = authenticationView
+            authenticationViewModel.fetchRemoteConfig { isSignUpDisabled in
+                self.authenticationView.segmentedControl.isHidden = isSignUpDisabled
+            }
         }else{
             let tabBarViewController = TabBarViewController()
             self.navigationController?.pushViewController(tabBarViewController, animated: true)
         }
         authenticationView.signInSignUpButton.addTarget(self, action: #selector(signInSignUpButtonAction), for: .touchUpInside)
+        
+        authenticationViewModel.changeHandler = { change in
+            switch change {
+            case .didErrorOccurred(let error):
+                //self.showError(error)
+                print("\(error.localizedDescription)")
+            case .didSignUpSuccessful:
+                //self.showAlert(title: "SIGN UP SUCCESSFUL!")
+                print("Sign Up Successfull")
+                let tabBarViewController = TabBarViewController()
+                self.navigationController?.pushViewController(tabBarViewController, animated: true)
+            }
+        }
     }
     
     // - MARK: Button Methods
     @objc func signInSignUpButtonAction(sender: UIButton!) {
         if authenticationView.segmentedControl.selectedSegmentIndex == 0{
-            signIn(email: authenticationView.mailAddress, password: authenticationView.password)
+            authenticationViewModel.signIn(email: authenticationView.mailAddress, password: authenticationView.password)
         }else{
-            signUp(email: authenticationView.mailAddress, password: authenticationView.password)
+            authenticationViewModel.signUp(email: authenticationView.mailAddress, password: authenticationView.password)
         }
     }
     

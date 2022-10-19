@@ -44,6 +44,8 @@
 		C93D661628F755C000F32BE6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C93D661528F755C000F32BE6 /* FirebaseFirestore */; };
 		C93D661A28F755C000F32BE6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C93D661928F755C000F32BE6 /* FirebaseFirestoreSwift */; };
 		C93D661C28F755DE00F32BE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C93D661B28F755DE00F32BE6 /* GoogleService-Info.plist */; };
+		C96879E02900597700881A79 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = C96879DF2900597700881A79 /* RemoteConfigDefaults.plist */; };
+		C96879E22900599A00881A79 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96879E12900599A00881A79 /* AuthenticationViewModel.swift */; };
 		C9FC8AF428FF348E004E54E1 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AF328FF348E004E54E1 /* ProfileViewCell.swift */; };
 		C9FC8AF628FF4115004E54E1 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AF528FF4115004E54E1 /* SheetViewController.swift */; };
 		C9FC8AFB28FF41CC004E54E1 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AFA28FF41CC004E54E1 /* SheetView.swift */; };
@@ -85,6 +87,8 @@
 		C93D65FD28F753CA00F32BE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93D660C28F7551F00F32BE6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		C93D661B28F755DE00F32BE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C96879DF2900597700881A79 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		C96879E12900599A00881A79 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		C9FC8AF328FF348E004E54E1 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
 		C9FC8AF528FF4115004E54E1 /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		C9FC8AFA28FF41CC004E54E1 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 			children = (
 				C93D65FD28F753CA00F32BE6 /* Info.plist */,
 				C93D661B28F755DE00F32BE6 /* GoogleService-Info.plist */,
+				C96879DF2900597700881A79 /* RemoteConfigDefaults.plist */,
 			);
 			path = Plists;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 		C93D662528F7565C00F32BE6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C96879E12900599A00881A79 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -529,6 +535,7 @@
 			files = (
 				C93D65FC28F753CA00F32BE6 /* LaunchScreen.storyboard in Resources */,
 				C93234AE28FC011F004443B4 /* Assets.xcassets in Resources */,
+				C96879E02900597700881A79 /* RemoteConfigDefaults.plist in Resources */,
 				C93D661C28F755DE00F32BE6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +549,7 @@
 			files = (
 				C93234D328FCAC91004443B4 /* SearchViewModel.swift in Sources */,
 				C93234CF28FCAA23004443B4 /* SearchView.swift in Sources */,
+				C96879E22900599A00881A79 /* AuthenticationViewModel.swift in Sources */,
 				C93234B828FC083E004443B4 /* SearchViewController.swift in Sources */,
 				C916F41E28F8831B000E5B73 /* String+Extensions.swift in Sources */,
 				C9FC8AF628FF4115004E54E1 /* SheetViewController.swift in Sources */,
