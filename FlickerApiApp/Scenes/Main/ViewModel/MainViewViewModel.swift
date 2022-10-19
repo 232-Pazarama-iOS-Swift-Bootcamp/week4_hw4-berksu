@@ -27,19 +27,16 @@ final class MainViewViewModel{
     var changeHandler: ((RecentPhotoListChanges) -> Void)?
 
     func fetchRecentPhotos() {
-        provider.request(.getRecentImages(page: "1")) { result in
+        provider.request(.getRecentImages(page: "1")) { [weak self] result in
             switch result {
             case .failure(let error):
-                print("error")
-                self.changeHandler?(.didErrorOccurred(error))
+                self?.changeHandler?(.didErrorOccurred(error))
             case .success(let response):
                 do {
                     let recentPhotosResponse = try JSONDecoder().decode(RecentPhotosResponse.self, from: response.data)
-                    self.recentPhotosResponse = recentPhotosResponse
-                    print(recentPhotosResponse)
+                    self?.recentPhotosResponse = recentPhotosResponse
                 } catch {
-                    print("catched")
-                    self.changeHandler?(.didErrorOccurred(error))
+                    self?.changeHandler?(.didErrorOccurred(error))
                 }
             }
         }

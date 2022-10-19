@@ -18,12 +18,8 @@ class AuthenticationViewController: UIViewController {
         return authenticationViewModel.isSignedIn
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //try! Auth.auth().signOut()
-        view.backgroundColor = .red
-        signedIn = authenticationViewModel.signedIn
+    override func viewWillAppear(_ animated: Bool) {
+        // If user already signed, directly go to tab bar
         if !isSignedIn{
             view = authenticationView
             authenticationViewModel.fetchRemoteConfig { isSignUpDisabled in
@@ -31,23 +27,33 @@ class AuthenticationViewController: UIViewController {
             }
         }else{
             let tabBarViewController = TabBarViewController()
-            self.navigationController?.pushViewController(tabBarViewController, animated: true)
+            tabBarViewController.modalPresentationStyle = .fullScreen
+            self.navigationController?.present(tabBarViewController, animated: true)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
+        signedIn = authenticationViewModel.signedIn
+        
+        // User intent
         authenticationView.signInSignUpButton.addTarget(self, action: #selector(signInSignUpButtonAction), for: .touchUpInside)
         
-        authenticationViewModel.changeHandler = { change in
+        authenticationViewModel.changeHandler = {[weak self] change in
             switch change {
             case .didErrorOccurred(let error):
-                //self.showError(error)
                 print("\(error.localizedDescription)")
             case .didSignUpSuccessful:
-                //self.showAlert(title: "SIGN UP SUCCESSFUL!")
                 print("Sign Up Successfull")
                 let tabBarViewController = TabBarViewController()
-                self.navigationController?.pushViewController(tabBarViewController, animated: true)
+                tabBarViewController.modalPresentationStyle = .fullScreen
+                self?.navigationController?.present(tabBarViewController, animated: true)
             }
         }
     }
+
     
     // - MARK: Button Methods
     @objc func signInSignUpButtonAction(sender: UIButton!) {
@@ -60,23 +66,4 @@ class AuthenticationViewController: UIViewController {
     
 }
 
-
-// Forget password
-//Auth.auth().sendPasswordReset(withEmail: email) { error in
-//  // [START_EXCLUDE]
-//  strongSelf.hideSpinner {
-//    if let error = error {
-//      strongSelf.showMessagePrompt(error.localizedDescription)
-//      return
-//    }
-//    strongSelf.showMessagePrompt("Sent")
-//  }
-//  // [END_EXCLUDE]
-//}
-
-
-// Set user password
-//Auth.auth().currentUser?.updatePassword(to: password) { error in
-//  // ...
-//}
 

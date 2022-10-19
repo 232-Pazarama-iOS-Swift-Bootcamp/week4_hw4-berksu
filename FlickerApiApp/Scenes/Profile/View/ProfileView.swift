@@ -100,24 +100,4 @@ final class ProfileView: UIView{
     }
 }
 
-extension UIImage{
-    func image(scaledTo newSize: CGSize) -> UIImage {
-            UIGraphicsBeginImageContext(newSize)
-            self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-            let newImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return newImage!
-        }
-}
 
-extension UIImageView {
-
-   func setRounded() {
-       self.layer.cornerRadius = self.frame.size.height/2
-       self.layer.borderWidth = 1
-       self.layer.borderColor = UIColor.blue.cgColor
-       self.layer.masksToBounds = false
-
-       self.clipsToBounds = true
-   }
-}

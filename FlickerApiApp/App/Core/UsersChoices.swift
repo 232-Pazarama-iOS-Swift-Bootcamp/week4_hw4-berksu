@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - User's Favorite photos and Saved Photos are holded in this singleton
 class UsersChoices{
     static let shared = UsersChoices()
     

@@ -54,6 +54,7 @@ final class SheetViewController: UIViewController{
     }
 
     
+    // TODO: Will be refactored for MVVM
     func updateUsersChoices(_ photo: Photo){
         FirebaseFirestoreManagement.shared.fetchPhotosToFirebaseFirestore(collectionName: "_s") { photos in
             self.userSaved = photos

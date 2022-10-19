@@ -24,6 +24,7 @@ final class AuthenticationViewModel{
     
     var changeHandler: ((AuthViewModelChange) -> Void)?
     
+    // Firebase Sign In
     func signIn(email: String?, password: String?){
         guard let email = email, let password = password else{
             print("email or password is empty")
@@ -52,6 +53,7 @@ final class AuthenticationViewModel{
         }
     }
     
+    // Firebase Sign Up
     func signUp(email: String?, password: String?){
         guard let email = email, let password = password else{
             print("email or password is empty")
@@ -84,7 +86,7 @@ final class AuthenticationViewModel{
     }
     
     
-    
+    // Fetch remote config data from firebase
     func fetchRemoteConfig(completion: @escaping (Bool) -> Void) {
         let remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()

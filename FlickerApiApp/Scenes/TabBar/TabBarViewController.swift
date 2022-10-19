@@ -36,13 +36,6 @@ class TabBarViewController: UITabBarController {
         ]
     }
     
-    func createViewControllerForEachPage(for vc: UIViewController, title: String, image: UIImage) -> UIViewController{
-        vc.tabBarItem.title = title
-        vc.tabBarItem.image = image
-        vc.navigationItem.title = title
-        return vc
-    }
-    
     fileprivate func createNavigationController(for rootViewController: UIViewController,
                                                 title: String,
                                                 image: UIImage) -> UIViewController{
@@ -54,5 +47,6 @@ class TabBarViewController: UITabBarController {
         rootViewController.navigationItem.title = title
         return navigationController
     }
+
     
 }

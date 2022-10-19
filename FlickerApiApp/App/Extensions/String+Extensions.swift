@@ -8,16 +8,19 @@
 import Foundation
 
 extension String {
+    //Control mail is valid or not
     var isValidEmail: Bool {
         NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: self)
     }
     
+    //Control password is valid or not
     var isValidPassword: Bool {
         let password = self.trimmingCharacters(in: CharacterSet.whitespaces)
         let passwordRegx = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[.#?!@$%^&<>*~:`-]).{8,}$"
         return NSPredicate(format: "SELF MATCHES %@",passwordRegx).evaluate(with: password)
     }
     
+    // Missing validation conditions
     func getMissingValidation() -> [String] {
         var errors: [String] = []
         if(!NSPredicate(format:"SELF MATCHES %@", ".*[A-Z]+.*").evaluate(with: self)){

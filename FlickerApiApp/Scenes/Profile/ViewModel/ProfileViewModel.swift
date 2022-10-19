@@ -20,19 +20,21 @@ final class ProfileViewModel{
     
     var changeHandler: ((RecentPhotoListChanges) -> Void)?
     
-    
+    // To fetch saved photos
     func fetchSavedPhotos() {
         FirebaseFirestoreManagement.shared.fetchPhotosToFirebaseFirestore(collectionName: "_s") { photos in
             self.photosArray = photos
         }
     }
     
+    // To fetch favorite photos
     func fetchFavouritePhotos() {
         FirebaseFirestoreManagement.shared.fetchPhotosToFirebaseFirestore(collectionName: "_f"){ photos in
             self.photosArray = photos
         }
     }
     
+    // get photo by using index path
     func photoForIndexPath(_ indexPath: IndexPath) -> Photo? {
         photosArray[indexPath.row]
     }

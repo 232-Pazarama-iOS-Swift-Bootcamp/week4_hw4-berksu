@@ -28,10 +28,10 @@ class MainViewController: UIViewController {
         
         initTableView()
         
-        mainViewModel.changeHandler = { change in
+        mainViewModel.changeHandler = {[weak self]  change in
             switch change{
             case .didFetchPhotos:
-                self.mainView.tableView.reloadData()
+                self?.mainView.tableView.reloadData()
             case .didErrorOccurred(let error):
                 print(error.localizedDescription)
             }

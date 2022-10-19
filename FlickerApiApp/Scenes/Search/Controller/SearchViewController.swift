@@ -19,11 +19,13 @@ final class SearchViewController: UIViewController {
         view = searchView
         setCollectionViewDelegate()
         
+        // Add search controller on navigation item
         let searchController = UISearchController()
-        searchController.searchBar.placeholder = "Education, Fun..."
+        searchController.searchBar.placeholder = "Search For Fun ..."
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         
+        // set title display mode
         navigationItem.largeTitleDisplayMode = .never
         
         searchViewModel.changeHandler = { change in
@@ -36,13 +38,14 @@ final class SearchViewController: UIViewController {
         }
     }
     
-    // MARK: - set delegates
+    //MARK: -set delegates
     func setCollectionViewDelegate() {
         searchView.collectionView.delegate = self
         searchView.collectionView.dataSource = self
     }
 }
 
+//MARK: -UICollectionViewController Delegate
 extension SearchViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("index: \(indexPath.row)")
@@ -56,6 +59,7 @@ extension SearchViewController: UICollectionViewDelegate{
     }
 }
 
+//MARK: -UICollectionViewController DataSource
 extension SearchViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         searchViewModel.numberOfRows
@@ -80,7 +84,7 @@ extension SearchViewController: UICollectionViewDataSource{
 }
 
 
-// TODO: - Search will be added
+// MARK: - Search delegate
 extension SearchViewController: UISearchResultsUpdating{
     // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {

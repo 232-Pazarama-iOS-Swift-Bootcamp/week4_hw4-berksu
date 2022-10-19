@@ -20,6 +20,7 @@ final class SearchViewModel{
     
     var changeHandler: ((RecentPhotoListChanges) -> Void)?
     
+    // fetch recent photos
     func fetchRecentPhotos() {
         provider.request(.getRecentImages(page: "1")) { result in
             switch result {
@@ -39,6 +40,7 @@ final class SearchViewModel{
         }
     }
     
+    // fetch searched photos
     func fetchSearchedPhotos(text: String) {
         provider.request(.search(text: text, page: "1")) { result in
             switch result {
@@ -58,6 +60,7 @@ final class SearchViewModel{
         }
     }
     
+    // get photo by using index path
     func photoForIndexPath(_ indexPath: IndexPath) -> Photo? {
         recentPhotosResponse?.photos?.photo?[indexPath.row]
     }

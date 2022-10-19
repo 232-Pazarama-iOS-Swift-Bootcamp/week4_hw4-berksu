@@ -263,8 +263,6 @@
 				C9FC8AFC28FF497B004E54E1 /* ViewModel */,
 				C93234B628FC0827004443B4 /* ViewController */,
 				C93234B528FC0822004443B4 /* View */,
-				C93234B428FC081C004443B4 /* Model */,
-				C93234B328FC0817004443B4 /* Contoller */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -300,20 +298,6 @@
 				C93234D228FCAC91004443B4 /* SearchViewModel.swift */,
 			);
 			path = ModelView;
-			sourceTree = "<group>";
-		};
-		C93234B328FC0817004443B4 /* Contoller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Contoller;
-			sourceTree = "<group>";
-		};
-		C93234B428FC081C004443B4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C93234B528FC0822004443B4 /* View */ = {

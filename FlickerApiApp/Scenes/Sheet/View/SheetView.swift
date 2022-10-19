@@ -9,6 +9,7 @@ import UIKit
 
 final class SheetView: UIView{
     
+    // For controlling user's reactions on image as adding favourite
     private var isFavouriteTouched = false
     var isFavuriteButtonTouched: Bool{
         get{
@@ -26,6 +27,7 @@ final class SheetView: UIView{
         }
     }
     
+    // For controlling user's reactions on image as saving
     private var isSaveTouched = false
     var isSaveButtonTouched: Bool{
         get{
@@ -49,7 +51,7 @@ final class SheetView: UIView{
         return imageView
     }()
     
-    // TODO: - User intents will be added
+    // MARK: - User intents
     lazy var addFavouriteButton: SubclassedUIButton = {
         let button = SubclassedUIButton()
         button.setImage(UIImage(named: "favourite"), for: .normal)
@@ -72,6 +74,7 @@ final class SheetView: UIView{
         return stackView
     }()
     
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white

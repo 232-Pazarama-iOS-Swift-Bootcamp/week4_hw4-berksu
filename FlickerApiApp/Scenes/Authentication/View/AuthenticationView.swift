@@ -59,17 +59,13 @@ final class AuthenticationView: UIView{
         stackView.axis = .vertical
         stackView.spacing = 20.0
         stackView.distribution = .fillEqually
-        //stackView.alignment = .center
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24.0)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(16.0)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing).offset(-16.0)
         }
-        //addTitleLabel()
-        //addSegmentedControl()
-        //addUserNameTextField()
-        //addPasswordTextField()
+
     }
     
 
@@ -78,6 +74,7 @@ final class AuthenticationView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Define Title Label
     private let titleLabel = {
         let label = UILabel()
         label.text = "Flicker Api App"
@@ -94,6 +91,7 @@ final class AuthenticationView: UIView{
         }
     }
     
+    // MARK: - Define Segment Control
     let segmentedControl = {
         let items = ["Sign In", "Sign Up"]
         let segmentedControl = UISegmentedControl(items: items)
@@ -128,7 +126,7 @@ final class AuthenticationView: UIView{
         }
     }
     
-    
+    // MARK: - Define username(email) Retype Text Field
     private let userNameTextField = {
         let textfield = UITextField()
         let spacerView = UIView(frame:CGRect(x:0, y:0, width:10, height:10))
@@ -156,6 +154,7 @@ final class AuthenticationView: UIView{
         }
     }
     
+    // MARK: - Define Password Text Field
     private let passwordTextField = {
         let textfield = UITextField()
         textfield.placeholder = "Password"
@@ -176,6 +175,7 @@ final class AuthenticationView: UIView{
         return textfield
     }()
     
+    // MARK: - Define Password Retype Text Field
     private let passwordRetypeTextField = {
         let textfield = UITextField()
         textfield.placeholder = "Re-type Password"
@@ -196,6 +196,7 @@ final class AuthenticationView: UIView{
         return textfield
     }()
 
+    // MARK: - Define Job Text Field
     private let jobTextLabel = {
         let textfield = UITextField()
         textfield.placeholder = "Job Title"
@@ -214,6 +215,7 @@ final class AuthenticationView: UIView{
         return textfield
     }()
     
+    // MARK: - Add Password Text Field
     func addPasswordTextField(){
         addSubview(passwordTextField)
         

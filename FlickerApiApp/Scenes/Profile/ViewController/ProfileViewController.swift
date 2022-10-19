@@ -14,18 +14,22 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //view.backgroundColor = .blue
         view = profileView
+        
+        // Add sign out button on navigation item
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
         navigationItem.rightBarButtonItem?.tintColor = .red
         navigationItem.largeTitleDisplayMode = .never
         
+        // Add button feature to segment control
         profileView.segmentedControl.addTarget(self, action: #selector(segmentAction(_:)), for: .valueChanged)
         
-        profileView.name = "Berksu"
+        profileView.name = FireBaseAuthAccessible.shared.userMail
         
+        // set delegate
         setCollectionViewDelegate()
         
+        //fetch photo
         profileViewModel.fetchFavouritePhotos()
         profileViewModel.changeHandler = { change in
             switch change{
@@ -38,11 +42,13 @@ final class ProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //According to segment control's position fetch data
         if(profileView.segmentedControl.selectedSegmentIndex == 0){
             profileViewModel.fetchFavouritePhotos()
         }else{
             profileViewModel.fetchSavedPhotos()
         }
+        
         profileViewModel.changeHandler = { change in
             switch change{
             case .didFetchPhotos:
@@ -53,11 +59,9 @@ final class ProfileViewController: UIViewController {
         }
     }
   
-    
     @objc func signOut(){
         FireBaseAuthAccessible.shared.signOut()
-        self.navigationController?.popToRootViewController(animated: true)
-        print("Sign out")
+        dismiss(animated: true)
     }
     
     @objc func segmentAction(_ segmentedControl: UISegmentedControl) {
@@ -74,7 +78,6 @@ final class ProfileViewController: UIViewController {
     }
     
     
-    
     // MARK: - set delegates
     func setCollectionViewDelegate() {
         profileView.collectionView.delegate = self
@@ -83,6 +86,7 @@ final class ProfileViewController: UIViewController {
 }
 
 
+// MARK: - UICollectionViewDelegate
 extension ProfileViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("index: \(indexPath.row)")
@@ -97,6 +101,7 @@ extension ProfileViewController: UICollectionViewDelegate{
     }
 }
 
+// MARK: - UICollectionDataSource
 extension ProfileViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return profileViewModel.photosArray.count

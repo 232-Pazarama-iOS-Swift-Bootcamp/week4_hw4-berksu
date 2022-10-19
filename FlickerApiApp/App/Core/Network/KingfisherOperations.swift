@@ -8,12 +8,14 @@
 import UIKit
 import Kingfisher
 
+// MARK: - All kingfisher operations are done in this singelton
 struct KingfisherOperations{
     
     static let shared = KingfisherOperations()
     
     private init(){}
     
+    // Download normal image from url
     func downloadImage(url: String, imageView: UIImageView, completion: @escaping (Bool) -> Void){
         let url = URL(string: url)
         imageView.kf.indicatorType = .activity
@@ -21,8 +23,6 @@ struct KingfisherOperations{
             with: url,
             placeholder: UIImage(named:"photo_camera"),
             options: [
-               // .processor(processor),
-               // .scaleFactor(UIScreen.main.scale),
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
@@ -31,7 +31,6 @@ struct KingfisherOperations{
             switch result {
             case .success(_):
                 completion(true)
-                //print("Task done for: \(value.source.url?.absoluteString ?? "")")
             case .failure(let error):
                 completion(false)
                 print("Job failed: \(error.localizedDescription)")
@@ -39,6 +38,7 @@ struct KingfisherOperations{
         }
     }
     
+    // Download profile normal image from url
     func downloadProfileImage(url: String, imageView: UIImageView, completion: @escaping (Bool) -> Void){
         let url = URL(string: url)
         let processor = RoundCornerImageProcessor(cornerRadius: imageView.bounds.size.width / 2)
@@ -56,7 +56,6 @@ struct KingfisherOperations{
             result in
             switch result {
             case .success(_):
-               // print("Task done for: \(value.source.url?.absoluteString ?? "")")
                 completion(true)
             case .failure(let error):
                 print("Job failed: \(error.localizedDescription)")
