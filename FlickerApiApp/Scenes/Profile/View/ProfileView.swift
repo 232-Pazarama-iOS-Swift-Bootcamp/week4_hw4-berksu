@@ -44,21 +44,22 @@ final class ProfileView: UIView{
     }()
     
     
-//    @objc func segmentAction(_ segmentedControl: UISegmentedControl) {
-//            switch (segmentedControl.selectedSegmentIndex) {
-//            case 0:
-//                signInSignUpButton.setTitle("Sign In", for: .normal)
-//                passwordRetypeTextField.isHidden = true
-//                jobTextLabel.isHidden = true
-//            case 1:
-//                signInSignUpButton.setTitle("Sign Up", for: .normal)
-//                passwordRetypeTextField.isHidden = false
-//                jobTextLabel.isHidden = false
-//            default:
-//                break
-//            }
-//    }
+    // MARK: - Properties
+    private let cellInset: CGFloat = 5.0
+    private let cellMultiplier: CGFloat = 0.45
+    private var cellDimension: CGFloat {
+        .screenWidth * cellMultiplier - cellInset
+    }
     
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: cellDimension, height: cellDimension)
+        return flowLayout
+    }()
+    
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    
+
     init() {
         super.init(frame: .zero)
         backgroundColor = .white
@@ -73,12 +74,21 @@ final class ProfileView: UIView{
         addSubview(segmentedControl)
         let favoriteImage = UIImage(named: "favourite")
         segmentedControl.setImage(favoriteImage , forSegmentAt: 0)
-        
+
         let saveImage = UIImage(named: "save")
         segmentedControl.setImage(saveImage , forSegmentAt: 1)
-        
+
         segmentedControl.snp.makeConstraints { make in
             make.top.equalTo(userInfoStackView.snp.bottom).offset(32.0)
+            make.leading.equalTo(self.snp.leading).offset(16.0)
+            make.trailing.equalTo(self.snp.trailing).offset(-16.0)
+        }
+
+        collectionView.register(ProfileViewCell.self , forCellWithReuseIdentifier: "cell")
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(segmentedControl.snp.bottom).offset(16.0)
+            make.bottom.equalTo(self.snp.bottom)
             make.leading.equalTo(self.snp.leading).offset(16.0)
             make.trailing.equalTo(self.snp.trailing).offset(-16.0)
         }

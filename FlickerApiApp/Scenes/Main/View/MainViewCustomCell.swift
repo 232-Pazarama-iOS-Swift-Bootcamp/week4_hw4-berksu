@@ -52,6 +52,13 @@ final class MainViewCustomCell: UITableViewCell{
         }
     }
     
+    func createLine() -> UIView {
+        var lineView = UIView(frame: CGRect())
+        lineView.layer.borderWidth = 1.0
+        lineView.layer.borderColor = UIColor.black.cgColor
+        return lineView
+    }
+
     
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -78,7 +85,7 @@ final class MainViewCustomCell: UITableViewCell{
         return stackView
     }()
     
-    // TODO: - User intents will be added
+    // MARK: - User intents will be added
     lazy var addFavouriteButton: SubclassedUIButton = {
         let button = SubclassedUIButton()
         button.setImage(UIImage(named: "favourite"), for: .normal)
@@ -105,29 +112,54 @@ final class MainViewCustomCell: UITableViewCell{
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
         
+        let lineAtTheTop = createLine()
+        addSubview(lineAtTheTop)
+        lineAtTheTop.snp.makeConstraints { make in
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+            make.top.equalTo(self.snp.top)
+        }
         addSubview(userNameStackView)
         userNameStackView.snp.makeConstraints { make in
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(8.0)
-            make.top.equalTo(self.snp.top).offset(16.0)
+            make.top.equalTo(lineAtTheTop.snp.bottom).offset(8.0)
+        }
+        
+        let lineAtThebottomOFUserStack = createLine()
+        addSubview(lineAtThebottomOFUserStack)
+        lineAtThebottomOFUserStack.snp.makeConstraints { make in
+            make.top.equalTo(userNameStackView.snp.bottom).offset(16.0)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
         }
         
         addSubview(photoImageView)
         photoImageView.snp.makeConstraints { make in
-            make.top.equalTo(userNameStackView.snp.bottom).offset(8.0)
+            make.top.equalTo(lineAtThebottomOFUserStack.snp.bottom).offset(8.0)
             make.centerX.equalTo(self.snp.centerX)
+        }
+        
+        let lineAtTheBottomOfImage = createLine()
+        addSubview(lineAtTheBottomOfImage)
+        lineAtTheBottomOfImage.snp.makeConstraints { make in
+            make.top.equalTo(photoImageView.snp.bottom).offset(16.0)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
         }
         
         addSubview(buttonStackView)
         buttonStackView.snp.makeConstraints { make in
-            make.top.equalTo(photoImageView.snp.bottom).offset(8.0)
+            make.top.equalTo(lineAtTheBottomOfImage.snp.bottom).offset(8.0)
             make.bottom.equalTo(self.snp.bottom).offset(-16.0)
             make.leading.equalTo(self.snp.leading).offset(16.0)
             make.trailing.equalTo(self.snp.trailing).offset(-16.0)
         }
+ 
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 

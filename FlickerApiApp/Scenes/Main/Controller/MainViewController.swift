@@ -15,12 +15,17 @@ class MainViewController: UIViewController {
     
     var isFavouriteButtonTouched = false
     var isSaveButtonTouched = false
+    
+    var userFavourites: [Photo] = []
+    var userSaved: [Photo] = []
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         mainViewModel.fetchRecentPhotos()
         super.viewDidLoad()
         view = mainView
+        navigationItem.largeTitleDisplayMode = .never
+        
         initTableView()
         
         mainViewModel.changeHandler = { change in
@@ -32,6 +37,13 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mainViewModel.fetchRecentPhotos()
+        userFavourites = []
+        userSaved = []
+        mainView.tableView.reloadData()
+    }
 
     
     // MARK: -TableView init
@@ -42,13 +54,64 @@ class MainViewController: UIViewController {
     
 }
 
+
+
 // MARK: - TableView Delegate
 extension MainViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Index: \(indexPath.row)")
+        // Create the view controller.
+        guard let photoAtIndex = mainViewModel.photoForIndexPath(indexPath) else {fatalError("Photo is nil")}
+        
+        let sheetViewController = SheetViewController()
+        sheetViewController.presentationController?.delegate = self
+        sheetViewController.photo = photoAtIndex
+        // Present it w/o any adjustments so it uses the default sheet presentation.
+        present(sheetViewController, animated: true, completion: nil)
     }
 }
 
+
+
+
+extension MainViewController{
+    func controlWhetherPhotoIsChosenOrNot(photoAtIndex: Photo, cell: MainViewCustomCell){
+        if(userSaved.count == 0){
+            FirebaseFirestoreManagement.shared.fetchPhotosToFirebaseFirestore(collectionName: "_s") { photos in
+                self.userSaved = photos
+                if(self.userSaved.contains(where: { photoItem in photoItem.url_n == photoAtIndex.url_n })){
+                    cell.isSaveButtonTouched = true
+                }else{
+                    cell.isSaveButtonTouched = false
+                }
+            }
+        }else{
+            if(self.userSaved.contains(where: { photoItem in photoItem.url_n == photoAtIndex.url_n })){
+                cell.isSaveButtonTouched = true
+            }else{
+                cell.isSaveButtonTouched = false
+            }
+        }
+        
+        if(userFavourites.count == 0){
+            FirebaseFirestoreManagement.shared.fetchPhotosToFirebaseFirestore(collectionName: "_f") { photos in
+                self.userFavourites = photos
+                if(self.userFavourites.contains(where: { photoItem in photoItem.url_n == photoAtIndex.url_n })){
+                    cell.isFavuriteButtonTouched = true
+                }else{
+                    cell.isFavuriteButtonTouched = false
+                }
+            }
+        }else{
+            if(self.userFavourites.contains(where: { photoItem in photoItem.url_n == photoAtIndex.url_n })){
+                cell.isFavuriteButtonTouched = true
+            }else{
+                cell.isFavuriteButtonTouched = false
+            }
+        }
+    }
+    
+}
 
 // MARK: - TableView DataSource
 extension MainViewController: UITableViewDataSource{
@@ -64,16 +127,19 @@ extension MainViewController: UITableViewDataSource{
         
         guard let photoAtIndex = mainViewModel.photoForIndexPath(indexPath) else {fatalError("Photo is nil")}
         
+       
+        controlWhetherPhotoIsChosenOrNot(photoAtIndex: photoAtIndex, cell: cell)
+        
+        
         let url = photoAtIndex.url_n ?? ""
         if let farm = photoAtIndex.farm,
            let server = photoAtIndex.server,
            let owner = photoAtIndex.owner
         {
             let profileImageURL = "https://farm\(farm).staticflickr.com/\(server)/buddyicons/\(owner).jpg"
+
             KingfisherOperations.shared.downloadProfileImage(url: profileImageURL, imageView: cell.profileImageView){success in
                 if(success){
-                    cell.profileImageView.layer.cornerRadius = cell.profileImageView.frame.size.width / 2
-                    cell.profileImageView.clipsToBounds = true
                     tableView.reloadRows(at: [indexPath], with: .automatic)
                 }
             }

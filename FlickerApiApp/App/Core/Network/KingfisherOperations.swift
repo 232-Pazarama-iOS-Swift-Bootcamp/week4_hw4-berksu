@@ -29,7 +29,7 @@ struct KingfisherOperations{
         {
             result in
             switch result {
-            case .success(let value):
+            case .success(_):
                 completion(true)
                 //print("Task done for: \(value.source.url?.absoluteString ?? "")")
             case .failure(let error):
@@ -41,13 +41,13 @@ struct KingfisherOperations{
     
     func downloadProfileImage(url: String, imageView: UIImageView, completion: @escaping (Bool) -> Void){
         let url = URL(string: url)
-        //let processor = RoundCornerImageProcessor(cornerRadius: imageView.bounds.size.width / 2)
+        let processor = RoundCornerImageProcessor(cornerRadius: imageView.bounds.size.width / 2)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(
             with: url,
             placeholder: UIImage(named:"photo_camera"),
             options: [
-                //.processor(processor),
+                .processor(processor),
                 //.scaleFactor(UIScreen.main.scale),
                 .transition(.fade(1)),
                 .cacheOriginalImage
@@ -55,7 +55,7 @@ struct KingfisherOperations{
         {
             result in
             switch result {
-            case .success(let value):
+            case .success(_):
                // print("Task done for: \(value.source.url?.absoluteString ?? "")")
                 completion(true)
             case .failure(let error):

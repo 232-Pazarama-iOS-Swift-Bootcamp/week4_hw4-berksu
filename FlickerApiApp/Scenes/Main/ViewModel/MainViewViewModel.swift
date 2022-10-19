@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Kingfisher
-import FirebaseFirestore
 
 enum RecentPhotoListChanges {
     case didErrorOccurred(_ error: Error)

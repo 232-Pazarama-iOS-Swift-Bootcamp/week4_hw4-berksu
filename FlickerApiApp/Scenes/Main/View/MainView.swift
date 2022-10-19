@@ -17,10 +17,9 @@ class MainView: UIView {
     // MARK: - Init
     init() {
         super.init(frame: .zero)
-        backgroundColor = .red
         addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(self.snp.top)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)

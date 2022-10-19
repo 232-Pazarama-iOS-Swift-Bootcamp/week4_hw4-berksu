@@ -44,6 +44,13 @@
 		C93D661628F755C000F32BE6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C93D661528F755C000F32BE6 /* FirebaseFirestore */; };
 		C93D661A28F755C000F32BE6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C93D661928F755C000F32BE6 /* FirebaseFirestoreSwift */; };
 		C93D661C28F755DE00F32BE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C93D661B28F755DE00F32BE6 /* GoogleService-Info.plist */; };
+		C9FC8AF428FF348E004E54E1 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AF328FF348E004E54E1 /* ProfileViewCell.swift */; };
+		C9FC8AF628FF4115004E54E1 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AF528FF4115004E54E1 /* SheetViewController.swift */; };
+		C9FC8AFB28FF41CC004E54E1 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AFA28FF41CC004E54E1 /* SheetView.swift */; };
+		C9FC8AFE28FF498B004E54E1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AFD28FF498B004E54E1 /* ProfileViewModel.swift */; };
+		C9FC8B0028FF55FF004E54E1 /* UsersChoices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8AFF28FF55FF004E54E1 /* UsersChoices.swift */; };
+		C9FC8B0328FF5EFA004E54E1 /* SheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8B0228FF5EFA004E54E1 /* SheetViewModel.swift */; };
+		C9FC8B0528FF630F004E54E1 /* UIViewController+UIAdaptivePresentaionControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC8B0428FF630F004E54E1 /* UIViewController+UIAdaptivePresentaionControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +85,13 @@
 		C93D65FD28F753CA00F32BE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93D660C28F7551F00F32BE6 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		C93D661B28F755DE00F32BE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C9FC8AF328FF348E004E54E1 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
+		C9FC8AF528FF4115004E54E1 /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
+		C9FC8AFA28FF41CC004E54E1 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		C9FC8AFD28FF498B004E54E1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C9FC8AFF28FF55FF004E54E1 /* UsersChoices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChoices.swift; sourceTree = "<group>"; };
+		C9FC8B0228FF5EFA004E54E1 /* SheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewModel.swift; sourceTree = "<group>"; };
+		C9FC8B0428FF630F004E54E1 /* UIViewController+UIAdaptivePresentaionControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAdaptivePresentaionControllerDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +181,7 @@
 			children = (
 				C93234C128FC3871004443B4 /* Extensions */,
 				C93234A328FBF00C004443B4 /* Network */,
+				C9FC8AFF28FF55FF004E54E1 /* UsersChoices.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -194,7 +209,8 @@
 		C93234A728FBFAC1004443B4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C93234B628FC0827004443B4 /* ViewModel */,
+				C9FC8AFC28FF497B004E54E1 /* ViewModel */,
+				C93234B628FC0827004443B4 /* ViewController */,
 				C93234B528FC0822004443B4 /* View */,
 				C93234B428FC081C004443B4 /* Model */,
 				C93234B328FC0817004443B4 /* Contoller */,
@@ -253,16 +269,17 @@
 			isa = PBXGroup;
 			children = (
 				C90335EF28FDF10F00D8C7D2 /* ProfileView.swift */,
+				C9FC8AF328FF348E004E54E1 /* ProfileViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		C93234B628FC0827004443B4 /* ViewModel */ = {
+		C93234B628FC0827004443B4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				C93234B928FC087E004443B4 /* ProfileViewController.swift */,
 			);
-			path = ViewModel;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C93234C128FC3871004443B4 /* Extensions */ = {
@@ -270,6 +287,7 @@
 			children = (
 				C93234C228FC387F004443B4 /* Encodable+Extensions.swift */,
 				C93234CA28FC5491004443B4 /* CGFloat+Extensions.swift */,
+				C9FC8B0428FF630F004E54E1 /* UIViewController+UIAdaptivePresentaionControllerDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,6 +360,7 @@
 		C93D662128F7564000F32BE6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C9FC8AF728FF417F004E54E1 /* Sheet */,
 				C93234A728FBFAC1004443B4 /* Profile */,
 				C93234A628FBFABC004443B4 /* Search */,
 				C916F41F28F89ECD000E5B73 /* Main */,
@@ -390,6 +409,48 @@
 				C93D65FA28F753CA00F32BE6 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		C9FC8AF728FF417F004E54E1 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC8B0128FF5EE9004E54E1 /* ViewModel */,
+				C9FC8AF928FF41C2004E54E1 /* View */,
+				C9FC8AF828FF418B004E54E1 /* Controller */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		C9FC8AF828FF418B004E54E1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC8AF528FF4115004E54E1 /* SheetViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C9FC8AF928FF41C2004E54E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC8AFA28FF41CC004E54E1 /* SheetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9FC8AFC28FF497B004E54E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC8AFD28FF498B004E54E1 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C9FC8B0128FF5EE9004E54E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC8B0228FF5EFA004E54E1 /* SheetViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,24 +544,31 @@
 				C93234CF28FCAA23004443B4 /* SearchView.swift in Sources */,
 				C93234B828FC083E004443B4 /* SearchViewController.swift in Sources */,
 				C916F41E28F8831B000E5B73 /* String+Extensions.swift in Sources */,
+				C9FC8AF628FF4115004E54E1 /* SheetViewController.swift in Sources */,
 				C90335E928FDDFE600D8C7D2 /* FirebaseFirestoreAccessible.swift in Sources */,
 				C90335EE28FDE38200D8C7D2 /* FirebaseAuthAccessible.swift in Sources */,
 				C90335F228FDF6DD00D8C7D2 /* FirebaseFirestoreManagement.swift in Sources */,
 				C916F42728F89F43000E5B73 /* MainView.swift in Sources */,
 				C93234BC28FC08F5004443B4 /* RecentPhotosResponse.swift in Sources */,
+				C9FC8AF428FF348E004E54E1 /* ProfileViewCell.swift in Sources */,
 				C93D65F428F753C900F32BE6 /* AuthenticationViewController.swift in Sources */,
 				C93234C928FC467E004443B4 /* MainViewCustomCell.swift in Sources */,
 				C93D65F028F753C900F32BE6 /* AppDelegate.swift in Sources */,
 				C93234C028FC09DF004443B4 /* Photos.swift in Sources */,
 				C93234C328FC387F004443B4 /* Encodable+Extensions.swift in Sources */,
+				C9FC8B0028FF55FF004E54E1 /* UsersChoices.swift in Sources */,
 				C93234BE28FC0984004443B4 /* Photo.swift in Sources */,
 				C90335F028FDF10F00D8C7D2 /* ProfileView.swift in Sources */,
 				C93234CD28FC6FEB004443B4 /* KingfisherOperations.swift in Sources */,
+				C9FC8B0328FF5EFA004E54E1 /* SheetViewModel.swift in Sources */,
 				C93234CB28FC5491004443B4 /* CGFloat+Extensions.swift in Sources */,
 				C93234AA28FBFAE8004443B4 /* TabBarViewController.swift in Sources */,
+				C9FC8B0528FF630F004E54E1 /* UIViewController+UIAdaptivePresentaionControllerDelegate.swift in Sources */,
 				C93234BA28FC087E004443B4 /* ProfileViewController.swift in Sources */,
 				C93234D128FCAA8B004443B4 /* SearchViewCell.swift in Sources */,
 				C916F42528F89F15000E5B73 /* MainViewController.swift in Sources */,
+				C9FC8AFE28FF498B004E54E1 /* ProfileViewModel.swift in Sources */,
+				C9FC8AFB28FF41CC004E54E1 /* SheetView.swift in Sources */,
 				C93D660D28F7551F00F32BE6 /* AuthenticationView.swift in Sources */,
 				C93D65F228F753C900F32BE6 /* SceneDelegate.swift in Sources */,
 				C93234C528FC3973004443B4 /* MainViewViewModel.swift in Sources */,

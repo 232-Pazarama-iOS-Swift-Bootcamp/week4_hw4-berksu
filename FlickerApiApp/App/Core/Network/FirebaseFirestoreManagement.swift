@@ -87,7 +87,7 @@ struct FirebaseFirestoreManagement{
     }
     
     
-    // Add photo to firebase favourites
+    // Remove photo to firebase favourites
     func removePhotoToFirebaseFirestoreFromSaved(_ photo: Photo?) {
         guard let photo = photo else { return }
         guard let id = photo.id else { return }
@@ -100,6 +100,34 @@ struct FirebaseFirestoreManagement{
                 print("Document successfully deleted!")
             }
         }
-        
+    }
+    
+    // Get photo to firebase
+    func fetchPhotosToFirebaseFirestore(collectionName: String, completion: @escaping ([Photo]) -> Void) {
+        guard let user = FireBaseAuthAccessible.shared.user else {return}
+        db.collection("\(user.uid)+"+collectionName).getDocuments() { (querySnapshot, err) in
+            var photos:[Photo] = []
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion([])
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    let id = data["id"] as! String?
+                    let photo:Photo = Photo(id: data["id"] as! String?,
+                                      owner: data["owner"] as! String?,
+                                      secret: data["secret"] as! String?,
+                                      server: data["server"] as! String?,
+                                      farm: data["farm"] as! Int?,
+                                      title: data["title"] as! String?,
+                                      datetaken: data["datetaken"] as! String?,
+                                      ownername: data["ownername"] as! String?,
+                                      url_n: data["url_n"] as! String?)
+                    photos.append(photo)
+                }
+                completion(photos)
+            }
+        }
+        completion([])
     }
 }

@@ -24,6 +24,8 @@ final class SearchViewController: UIViewController {
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         
+        navigationItem.largeTitleDisplayMode = .never
+        
         searchViewModel.changeHandler = { change in
             switch change{
             case .didFetchPhotos:
@@ -44,6 +46,13 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("index: \(indexPath.row)")
+        // Create the view controller.
+        guard let photoAtIndex = searchViewModel.photoForIndexPath(indexPath) else {fatalError("Photo is nil")}
+        
+        let sheetViewController = SheetViewController()
+        sheetViewController.photo = photoAtIndex
+        // Present it w/o any adjustments so it uses the default sheet presentation.
+        present(sheetViewController, animated: true, completion: nil)
     }
 }
 
