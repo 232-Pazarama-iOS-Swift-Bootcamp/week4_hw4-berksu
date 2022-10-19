@@ -1,5 +1,25 @@
 # Pazarama iOS Bootcamp - Hafta 4 - Ödev
+You can try app with:
+```
+Username: test@test.com
+Password: Test1234.
+````
+Or you can sign up. Password must have digits, special characters as shown at the top.
 
+## ScreenShots
+<p align="center">
+  <img src="screenshots\1.png" width="150" />
+  <img src="screenshots\2.png" width="150" /> 
+  <img src="screenshots\3.png" width="150" />
+  <img src="screenshots\4.png" width="150" />
+  <img src="screenshots\5.png" width="150" /> 
+  <img src="screenshots\6.png" width="150" />
+</p>
+
+# Gif
+<p align="center">
+<img src="screenshots\hw4_2.gif" alt="drawing" width="200"/>
+</p>
 ## Flickr App
 
 Uygulamamızı geliştirirken Flickr API ve Firebase araçlarını kullanacağız. Uygulamada Firebase Auth ile kullanıcı kayıt ve giriş işlemlerini yöneteceğiz. Uygulamanın ana ekranında Flickr API’ı kullanarak son yüklenen fotoğrafları UITableViewController kullanarak listeleyeceğiz. Bu aşamada özelleşmiş bir UITableViewCell ile Instagram’daki post benzeri bir görünüm oluşturacağız. Kullanıcı görseli beğenebilir, kütüphanesine kaydedebilir ve profil ekranından önceden beğendiği veya kütüphaneye kaydettiği fotoğrafları görüntüleyebilir. Firebase firestore kullanılarak bilgiler buluta kaydedilmelidir.
