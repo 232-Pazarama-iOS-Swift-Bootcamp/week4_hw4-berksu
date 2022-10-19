@@ -21,7 +21,7 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        try! Auth.auth().signOut()
+        //try! Auth.auth().signOut()
         view.backgroundColor = .red
         signedIn = authenticationViewModel.signedIn
         if !isSignedIn{

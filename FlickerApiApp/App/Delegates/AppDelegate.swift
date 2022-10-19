@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupFirebase()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Disable"
         return true
     }
     

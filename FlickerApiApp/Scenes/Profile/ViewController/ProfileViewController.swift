@@ -55,6 +55,8 @@ final class ProfileViewController: UIViewController {
   
     
     @objc func signOut(){
+        FireBaseAuthAccessible.shared.signOut()
+        self.navigationController?.popToRootViewController(animated: true)
         print("Sign out")
     }
     

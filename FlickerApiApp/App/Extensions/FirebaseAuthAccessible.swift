@@ -20,5 +20,13 @@ struct FireBaseAuthAccessible {
     var user: User? {
         auth.currentUser
     }
+    
+    func signOut(){
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("error signOut: \(error.localizedDescription)")
+        }
+    }
 }
 
